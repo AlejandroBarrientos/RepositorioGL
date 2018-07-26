@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<head>
+
+
+<title>Green Leaves</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<style>
+input.ng-invalid {
+    background-color:pink;
+}
+body{
+	text-align: center;
+}
+.rcorners1 {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px; 
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1 class="rcorners1">Green Leaves</h1>
+<div class="content">
+
+<form ng-app="myApp" ng-controller="validateCtrl" 
+name="myForm" novalidate>
+
+<p>Nombre:<br>
+<input type="text" name="nombre" ng-model="nombre" required>
+<span style="color:red" ng-show="myForm.nombre.$dirty && myForm.nombre.$invalid">
+<span ng-show="myForm.nombre.$error.required">El nombre es requerido.</span>
+</span>
+</p>
+
+<p>Email:<br>
+<input type="email" name="email" ng-model="email" required>
+<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+<span ng-show="myForm.email.$error.required">El e-mail es requerido.</span>
+<span ng-show="myForm.email.$error.email">E-mail incorrecto.</span>
+</span>
+</p>
+
+
+<p>Teléfono:<br>
+<input type="text" name="tel" ng-model="tel" required>
+<span style="color:red" ng-show="myForm.tel.$dirty && myForm.tel.$invalid">
+<span ng-show="myForm.tel.$error.required">El telefono es requerido.</span>
+</span>
+</p>
+
+<p>Fecha:<br>
+<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2012-03-06" name="fecha" ng-model="fecha" required>
+<span style="color:red" ng-show="myForm.fecha.$dirty && myForm.fecha.$invalid">
+<span ng-show="myForm.fecha.$error.date">Fecha incorrecta.</span>
+</span>
+</p>
+
+<p>Ciudad y Estado:<br>
+<select ng-model="selectedName" ng-options="x for x in ciudades">
+</select>
+<span style="color:red" ng-show="myForm.ciudad.$dirty && myForm.ciudad.$invalid">
+<span ng-show="myForm.ciudad.$error.required">El lugar es requerido.</span>
+</span>
+</p>
+
+<p>
+<input type="submit"
+ng-disabled="myForm.nombre.$dirty && myForm.nombre.$invalid ||
+myForm.email.$dirty && myForm.email.$invalid || 
+myForm.tel.$dirty && myForm.tel.$invalid ||   
+myForm.fecha.$dirty && myForm.fecha.$invalid || 
+myForm.ciudad.$dirty && myForm.ciudad.$invalid">
+</p>
+
+</form>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+    $scope.nombre = 'ale';
+    $scope.email = 'someone@company.com';
+    $scope.tel = '1234567891';
+    $scope.fecha = '2012-03-06';
+    $scope.ciudades = ["Monterrey", "Mexico", "Guadalajara"];
+});
+</script>
+
+</body>
+</html>
